@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- Copyright (c) 2018 Environmental Systems Research Institute, Inc.
+     Apache-2.0 -->
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -7,7 +9,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/dev-summit-2019.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,15 +26,183 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h1>Slide 1</h1>
-					<ul>
-						<li><a href="devsummit-2019.html">Dev Summit 2019</a></li>
-						<li><a href="feduc-2018.html">Fed UC 2018</a></li>
-						<li><a href="demo.html">Reveal.js Demo</a></li>
-					</ul>
+				<section data-background="img/2019/devsummit/bg-1.png" data-background-size="cover" style="padding-left: 80px;">
+					<h1 style="text-align: left; font-size: 80px;">Strategies for building and testing battery-efficient mobile apps</h1>
+					<p style="text-align: left; font-size: 30px;">Aaron Pulver</p>
+					<p style="text-align: left; font-size: 30px;"><a href="https://github.com/apulverizer">@apulverizer</a></p>
 				</section>
-				<section>Slide 2</section>
+				<section data-markdown data-background="img/2019/devsummit/bg-2.png">
+					<textarea data-template>
+						## Your app is killing my battery!
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## So many questions to ask...
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## What do you mean by "poor battery life?"
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## What baseline are you comparing it to?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## How is the device being used?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## What other apps are being used?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## How do you know that it's {app} that is causing poor battery life?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## How old is your device?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## What is the model and operating system of your device?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## What type of network and cellular coverage did you have?
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-4.png">
+					<textarea data-template>
+						## We can only change things we control
+
+						* Network requests <!-- .element: class="fragment" -->
+						* Location requests <!-- .element: class="fragment" -->
+						* File I/O <!-- .element: class="fragment" -->
+						* Device wakes <!-- .element: class="fragment" -->
+						* UI refresh rates <!-- .element: class="fragment" -->
+						* Reacting to "Low Power Mode" <!-- .element: class="fragment" -->
+
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-4.png">
+					<textarea data-template>
+						## Network Requests & Battery Life
+
+						<img src="img/battery_efficiency/RadioStateMachine.png" width="80%">
+
+						* Data transmission takes energy <!-- .element: class="fragment" -->
+						  * Poor signal requires the radio to transmit at a higher power <!-- .element: class="fragment" -->
+						* For a typical 3G device, every data transfer session will cause the radio to draw energy for almost 20 seconds. <!-- .element: class="fragment" -->
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## So what can we do about it?
+
+						* Group network requests together <!-- .element: class="fragment" -->
+						  * Radio is already powered up <!-- .element: class="fragment" -->
+						* Leverage network monitoring <!-- .element: class="fragment" -->
+						  * Make requests only when server is reachable <!-- .element: class="fragment" -->
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-4.png">
+					<textarea data-template>
+						## Location & Battery Life
+
+						* The on-device GPS receiver uses a significant amount of energy <!-- .element: class="fragment" -->
+						* Location can be derived from a variety of sources <!-- .element: class="fragment" -->
+						  * GPS receiver <!-- .element: class="fragment" -->
+						  * Wi-Fi <!-- .element: class="fragment" -->
+						  * Cellular Tower Triangulation <!-- .element: class="fragment" -->
+						  * Other sensors <!-- .element: class="fragment" -->
+						* Both Google and Apple provide "fused" location services <!-- .element: class="fragment" -->
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## So what can we do about it?
+
+						* Only request the accuracy you application needs <!-- .element: class="fragment" -->
+						  * Balanced, Best, Worst, Region Monitoring... <!-- .element: class="fragment" -->
+						* Shutdown the GPS when it's not needed <!-- .element: class="fragment" -->
+						  * Do you need the users location when a map is not displayed? <!-- .element: class="fragment" -->
+						  * Do you need location in the background? <!-- .element: class="fragment" -->
+						  * Can you use proximity notifications or geofencing <!-- .element: class="fragment" -->
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="img/2019/devsummit/bg-3.png">
+					<textarea data-template>
+						## What else can we do to optimize battery life?
+
+						* Minimize data writes to files <!-- .element: class="fragment" -->
+						  * Use Core Data, Rooms, SQLite... <!-- .element: class="fragment" -->
+						* Minimize device wakes <!-- .element: class="fragment" -->
+						  * High overhead to waking up a device <!-- .element: class="fragment" -->
+						  * Minimize timers and use tolerances for them <!-- .element: class="fragment" -->
+						* Minimize screen refreshing <!-- .element: class="fragment" -->
+						  * Does the user always need to centered perfectly on the map? <!-- .element: class="fragment" -->
+						* Change app behavior when app enters "Low Power Mode" <!-- .element: class="fragment" -->
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="/img/2019/devsummit/bg-6.png">
+					<textarea data-template>
+						## How do I test this stuff?
+
+						* You could use multiple, identical devices with different branches <!-- .element: class="fragment" -->
+						* Use monitoring tools to profile energy usage <!-- .element: class="fragment" -->
+						  * [Battery Historian/Android Studio](https://github.com/google/battery-historian)
+						  * [Instruments/Xcode](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/MonitorEnergyWithInstruments.html#//apple_ref/doc/uid/TP40015243-CH33-SW1)
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="/img/2019/devsummit/bg-6.png">
+					<textarea data-template>
+						## Instruments
+
+						<img src="img/battery_efficiency/instruments.png" width="60%">
+
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="/img/2019/devsummit/bg-6.png">
+					<textarea data-template>
+						## Battery Historian
+
+						<img src="img/battery_efficiency/battery_historian.png" width="80%">
+
+					</textarea>
+				</section>
+
+				<!-- ESRI LOGO SLIDE: -->
+				<section data-markdown data-background="img/2019/devsummit/bg-esri.png">
+				</section>
+
 			</div>
 		</div>
 
@@ -44,6 +214,13 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				// This height and width are here for the left-aligned title slide.
+				// If you do not want that, you can remove these two settings and
+				// the presentation will be closer to OOTB-Reveal.js:
+				width: '100%',
+				height: '100%',
+
+				history: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
